@@ -4,8 +4,13 @@ on:
 #   push:
 #     branches:
 #       - main
-#       - master
-  workflow_dispatch:
+    workflow_dispatch:
+        inputs:
+          Build_id:
+            required: true
+            type: number
+            description: "write the name of version that you are updating"
+
     
 
 jobs:
@@ -26,4 +31,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: atulpandey108/nodejsapp:latest
+          tags: atulpandey108/nodejsapp:${{ inputs.build_id }} 
