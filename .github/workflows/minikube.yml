@@ -1,0 +1,33 @@
+name: Deploy Pod to Minikube
+
+on:
+#   push:
+#     branches:
+#       - main
+  workflow_dispatch:
+      
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Start Minikube
+      uses: appleboy/start-minikube@v1
+      with:
+        kubernetes-version: 'v1.22.0'
+
+    - name: Configure Kubernetes CLI
+      uses: azure/k8s-set-context@v1
+      with:
+        kubeconfig: ~/.kube/config
+        method: kubeconfig
+        context: minikube
+
+    - name: Deploy Pod
+      run: kubectl apply -f pod.yaml
+
+    - name: number of pods
+      run: kubectl get pods
