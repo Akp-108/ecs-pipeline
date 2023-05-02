@@ -1,0 +1,37 @@
+# name: Deploy to ECS and notify New Relic
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Login to AWS ECR
+#         uses: aws-actions/amazon-ecr-login@v1
+#         with:
+#           registry:  6766-3404-9556.dkr.ecr.us-east-1.amazonaws.com
+#       - name: Build and push Docker image
+#         run: |
+#           docker build -t  6766-3404-9556.dkr.ecr.us-east-1.amazonaws.com/nodejs_image:${{ github.sha }} .
+#           docker push  6766-3404-9556.dkr.ecr.us-east-1.amazonaws.com/nodejs_image:${{ github.sha }}
+#       - name: Deploy to ECS
+#         uses: appleboy/ecs-deploy@master
+#         with:
+#           access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#           secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           region: us-east-1
+#           cluster: <ECS_CLUSTER_NAME>
+#           service: <ECS_SERVICE_NAME>
+#           image:  6766-3404-9556.dkr.ecr.us-east-1.amazonaws.com/nodejs_image:${{ github.sha }}
+#       - name: Notify New Relic
+#         uses: newrelic/newrelic-github-actions@v2.2.0
+#         with:
+#           api_key: ${{ secrets.NEW_RELIC_API_KEY }}
+#           app_name: <NEW_RELIC_APP_NAME>  
+#           deployment_id: ${{ github.sha }}
+#           revision: ${{ github.sha }}
+#           user: ${{ github.actor }}
+#           changelog: "Deployed ${GITHUB_REPOSITORY} to ECS"
