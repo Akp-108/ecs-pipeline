@@ -19,4 +19,4 @@ jobs:
 #         required: true
     steps:
       - run: |
-          echo "Hello, ${{ parameters.name }}!"
+          echo "Hello, ${{ inputs.build_id }}!"
