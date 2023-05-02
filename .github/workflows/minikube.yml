@@ -17,12 +17,13 @@ jobs:
 
     - name: Start Minikube
       run: |
-        curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
-        && chmod +x minikube && sudo mv minikube /usr/local/bin/
+          curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+          sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
 
     - name: Start Minikube Cluster
       run: |
-        sudo minikube start --vm-driver=none --kubernetes-version=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
+        sudo minikube start 
 
     - name: Configure Kubernetes CLI
       uses: azure/k8s-set-context@v1
