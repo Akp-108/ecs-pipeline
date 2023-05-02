@@ -11,6 +11,11 @@ on:
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
+    parameters:
+      name:
+        type: string
+        description: "The name of the person to greet"
+        required: true
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
