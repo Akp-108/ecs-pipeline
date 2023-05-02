@@ -1,0 +1,18 @@
+name: Greeting Pipeline
+
+on:
+#   push:
+#     branches:
+#       - main
+    workflow_dispatch:
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    parameters:
+      name:
+        type: string
+        description: "The name of the person to greet"
+        required: true
+    steps:
+      - run: |
+          echo "Hello, ${{ parameters.name }}!"
