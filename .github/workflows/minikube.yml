@@ -15,9 +15,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Start Minikube
-      uses: appleboy/start-minikube@v1
-      with:
-        kubernetes-version: 'v1.22.0'
+      uses: kube-actions/setup-minikube@v1
 
     - name: Configure Kubernetes CLI
       uses: azure/k8s-set-context@v1
