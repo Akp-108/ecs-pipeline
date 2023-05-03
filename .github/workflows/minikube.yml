@@ -18,9 +18,21 @@ jobs:
       run : |
             wget https://github.com/kubernetes/minikube/releases/download/v0.24.0/minikube_0.24-0.deb
      
-    - name: Install minikube
+#     - name: Install minikube
+#       run: |
+#            sudo dpkg -i minikube_0.24-0.deb
+           
+    - name: Configure Minikube
       run: |
-           sudo dpkg -i minikube_0.24-0.deb
+           # Start minikube vm-driver=none option
+
+            sudo minikube start --vm-driver=none
+
+            # Change permission
+            sudo chown -R $USER $HOME/.kube
+            sudo chgrp -R $USER $HOME/.kube
+            sudo chown -R $USER $HOME/.minikube
+            sudo chgrp -R $USER $HOME/.minikube 
 
 
 #     - name: Start Minikube
