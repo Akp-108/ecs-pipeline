@@ -66,6 +66,9 @@ jobs:
         run: |
             sleep 60s
             kubectl get pods
+      
+      - name: Test service URLs
+        run: minikube service list
 
 
 
