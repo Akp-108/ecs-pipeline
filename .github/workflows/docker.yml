@@ -60,7 +60,7 @@ jobs:
       - name: Deploy Pod
         run: |
          kubectl apply -f ./pod.yaml
-         kubectl apply -f ./pod2.yaml
+         kubectl apply -f ./pod2.yml
 
       - name: number of pods
         run: |
