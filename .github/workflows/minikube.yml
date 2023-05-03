@@ -38,9 +38,15 @@ jobs:
       
     - name: Kubectl version
       run: kubectl version --client
+      
+    - name: total contexts
+      run: kubectl config get-contexts
+    
+    - name: current-context
+      run : kubectl config current-context
 
-    - name: Deploy Pod
-      run: kubectl apply -f ./pod.yaml
+#     - name: Deploy Pod
+#       run: kubectl apply -f ./pod.yaml
 
-    - name: number of pods
-      run: kubectl get pods
+#     - name: number of pods
+#       run: kubectl get pods
