@@ -17,15 +17,6 @@ jobs:
   build_and_push:
     runs-on: ubuntu-latest
     steps: 
-#       - name: Install Minikube
-#         run: |
-#           curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-#           sudo install minikube-linux-amd64 /usr/local/bin/minikube
-#       - name: Install kubectl
-#         run: |
-#           curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-#           chmod +x ./kubectl
-#           sudo mv ./kubectl /usr/local/bin/kubectl
       - name: Checkout code
         uses: actions/checkout@v3
         
@@ -34,12 +25,6 @@ jobs:
         
       - name: Try the cluster !
         run: kubectl get pods -A
-           
-#       - name: Install Docker
-#         uses: docker/setup-docker@v2
-#       - name: Start Minikube
-#         run: |
-#           sudo minikube start --driver=docker
       
       - name: current status
         run: echo "docker and kubectl installed successfully inside the minikube"
@@ -77,7 +62,7 @@ jobs:
 
       - name: number of pods
         run: |
-            sleep 60s
+            sleep 20s
             kubectl get pods
 
 
