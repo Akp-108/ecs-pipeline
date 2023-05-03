@@ -58,11 +58,13 @@ jobs:
         run : kubectl config current-context
 
       - name: Deploy Pod
-        run: kubectl apply -f ./pod.yaml
+        run: |
+         kubectl apply -f ./pod.yaml
+         kubectl apply -f ./pod2.yaml
 
       - name: number of pods
         run: |
-            sleep 20s
+            sleep 60s
             kubectl get pods
 
 
