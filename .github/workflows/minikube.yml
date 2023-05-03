@@ -14,43 +14,18 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
     
-    - name: Download minikube
-      run : |
-            wget https://github.com/kubernetes/minikube/releases/download/v0.24.0/minikube_0.24-0.deb
+#     - name: Download minikube
+#       run : |
+#             wget https://github.com/kubernetes/minikube/releases/download/v0.24.0/minikube_0.24-0.deb
      
-#     - name: Install minikube
-#       run: |
-#            sudo dpkg -i minikube_0.24-0.deb
+    - name: Start minikube
+      uses: medyagh/setup-minikube@master
+    - name: Try the cluster !
+      run: kubectl get pods -A
            
-    - name: Configure Minikube
-      run: |
-           # Start minikube vm-driver=none option
-
-            sudo minikube start --vm-driver=none
-
-            # Change permission
-            sudo chown -R $USER $HOME/.kube
-            sudo chgrp -R $USER $HOME/.kube
-            sudo chown -R $USER $HOME/.minikube
-            sudo chgrp -R $USER $HOME/.minikube 
 
 
-#     - name: Start Minikube
-#       run: |
-#           curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-#           sudo install minikube-linux-amd64 /usr/local/bin/minikube
 
-
-#     - name: Start Minikube Cluster
-#       run: |
-#         sudo minikube start 
-
-#     - name: Configure Kubernetes CLI
-#       uses: azure/k8s-set-context@v1
-#       with:
-#         kubeconfig: ~/.kube/config
-#         method: kubeconfig
-#         context: minikube
     - name: Install kubectl
       run: |
         curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
