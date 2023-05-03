@@ -44,4 +44,6 @@ jobs:
       run: kubectl apply -f ./pod.yaml
 
     - name: number of pods
-      run: kubectl get pods
+      run: |
+        sleep 60s
+        kubectl get pods
