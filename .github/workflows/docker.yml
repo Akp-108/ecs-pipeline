@@ -37,9 +37,9 @@ jobs:
            
       - name: Install Docker
         uses: docker/setup-docker@v2
-      - name: Start Minikube
-        run: |
-          sudo minikube start --driver=docker
+#       - name: Start Minikube
+#         run: |
+#           sudo minikube start --driver=docker
       
       - name: current status
         run: echo "docker and kubectl installed successfully inside the minikube"
