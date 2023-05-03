@@ -35,12 +35,18 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
       
+#       - name: Build Docker image
+#         uses: docker/build-push-action@v2
+#         with:
+#           context: .
+#           push: true
+#           tags: atulpandey108/nodejsapp:${{ inputs.build_id }} 
       - name: Build Docker image
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
-          tags: atulpandey108/nodejsapp:${{ inputs.build_id }} 
+        run: docker run -t atulpandey108/nodejsapp:${{ inputs.build_id }} 
+      
+      - name: Push Docker Image on Docker hub
+        run: atulpandey108/nodejsapp:${{ inputs.build_id }} 
+ 
    
   
       - name: Install kubectl
