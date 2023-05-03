@@ -1,9 +1,9 @@
 name: Deploy Pod to Minikube
 
 on:
-#   push:
-#     branches:
-#       - main
+  push:
+    branches:
+      - main
   workflow_dispatch:
       
 
@@ -40,7 +40,7 @@ jobs:
       run: kubectl version --client
 
     - name: Deploy Pod
-      run: kubectl apply -f pod.yaml
+      run: kubectl apply -f ./pod.yaml
 
     - name: number of pods
       run: kubectl get pods
