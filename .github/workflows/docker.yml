@@ -35,8 +35,8 @@ jobs:
       - name: Try the cluster !
         run: kubectl get pods -A
            
-      - name: Install Docker
-        uses: docker/setup-docker@v2
+#       - name: Install Docker
+#         uses: docker/setup-docker@v2
 #       - name: Start Minikube
 #         run: |
 #           sudo minikube start --driver=docker
