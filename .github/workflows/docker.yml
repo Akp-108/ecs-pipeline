@@ -45,7 +45,7 @@ jobs:
         run: docker build -t atulpandey108/nodejsapp:${{ inputs.build_id }} .
       
       - name: Push Docker Image on Docker hub
-        run: atulpandey108/nodejsapp:${{ inputs.build_id }} 
+        run: docker push atulpandey108/nodejsapp:${{ inputs.build_id }} 
  
    
   
